@@ -9,13 +9,11 @@ namespace SevenDaysApiTest
     public class Tests
     {
         MovieController movieController;
-        ILogger<MovieController> logger;
 
         [SetUp]
         public void Setup()
         {
-            logger = null;
-            movieController = new MovieController(logger);
+            movieController = new MovieController(new SevenDaysContext());
         }
 
         [Test]

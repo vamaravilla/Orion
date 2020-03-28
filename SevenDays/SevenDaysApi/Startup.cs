@@ -10,8 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using SevenDays.Api.Models;
 
-namespace SevenDaysApi
+namespace SevenDays.Api
 {
     public class Startup
     {
@@ -25,6 +27,10 @@ namespace SevenDaysApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Configure DB Context for SQL Server
+            string connectionString = ConfigurationExtensions.GetConnectionString(this.Configuration,"SevenDaysConnectionString");
+            services.AddDbContext<SevenDaysContext>(opt =>
+               opt.UseSqlServer(connectionString));
             services.AddControllers();
         }
 
