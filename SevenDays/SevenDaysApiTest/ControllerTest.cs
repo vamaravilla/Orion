@@ -3,24 +3,25 @@ using NUnit.Framework;
 using SevenDays.Api.Controllers;
 using SevenDays.Api.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SevenDaysApiTest
 {
     public class Tests
     {
-        MovieController movieController;
+        MoviesOldController movieController;
 
         [SetUp]
         public void Setup()
         {
-            movieController = new MovieController(new SevenDaysContext());
+            movieController = new MoviesOldController(new SevenDaysContext());
         }
 
         [Test]
-        public void TestGetMovie()
+        public async void TestGetMovie()
         {
             //Arrange + Act
-            IEnumerable<Movie> response = movieController.Get();
+            var response = await movieController.GetMovie();
 
             //Assert
             Assert.IsNotNull(response);

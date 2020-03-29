@@ -7,40 +7,39 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SevenDays.Api.Entities;
 using SevenDays.Api.Helpers;
+using System.Threading.Tasks;
 
 namespace SevenDays.Api.Services
 {
     public interface IUserService
     {
         SimpleUser Authenticate(string email, string password);
-        IEnumerable<SimpleUser> GetAll();
+        SevenDaysContext GetDBContext();
     }
 
     public class UserService : IUserService
     {
-
-        // Users hardcoded for test only
-        private List<SimpleUser> _users = new List<SimpleUser>
-        {
-            new SimpleUser { Id = 1, Name = "Alex", Email = "alex@gmail.com", Password = "test" }
-        };
-
+        private readonly SevenDaysContext db;
         private readonly AppSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings)
+        public UserService(IOptions<AppSettings> appSettings, SevenDaysContext dbContext)
         {
             _appSettings = appSettings.Value;
+            db = dbContext;
         }
 
         public SimpleUser Authenticate(string email, string password)
         {
-            var user = _users.SingleOrDefault(x => x.Email == email && x.Password == password);
-
+            var user = db.User.SingleOrDefault(x => x.Email == email && x.Password == password);
+           
             // Return null if user not found
             if (user == null)
                 return null;
+
+            // Creating simple user object to add Token  
+            SimpleUser simpleUser = new SimpleUser(user.Email, user.IdUser);
+  
 
             // Authentication successful so generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -49,20 +48,20 @@ namespace SevenDays.Api.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, simpleUser.IdUser.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            user.Token = tokenHandler.WriteToken(token);
+            simpleUser.Token = tokenHandler.WriteToken(token);
 
-            return user;
+            return simpleUser;
         }
 
-        public IEnumerable<SimpleUser> GetAll()
+        public SevenDaysContext GetDBContext()
         {
-            return _users;
+            return db;
         }
     }
 }
