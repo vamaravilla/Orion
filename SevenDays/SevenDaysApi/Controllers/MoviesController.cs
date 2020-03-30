@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SevenDays.Api.Helpers;
 using SevenDays.Api.Models;
 
 namespace SevenDays.Api.Controllers
@@ -31,7 +32,7 @@ namespace SevenDays.Api.Controllers
         // GET: api/Movies
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovie([FromQuery]bool? available, [FromQuery]string? sort)
+        public async Task<ActionResult<IEnumerable<Movie>>> GetMovie([FromQuery]bool? available, [FromQuery]string sort)
         {
 
             List<Movie> moviesListed;
@@ -83,6 +84,81 @@ namespace SevenDays.Api.Controllers
             }
 
             return moviesListed;
+        }
+
+        /// <summary>
+        /// Get All movies filtered with paginng
+        /// </summary>
+        /// <returns>List of movies</returns>
+        // GET: api/Movies
+        [AllowAnonymous]
+        [HttpGet("filter")]
+        public ActionResult<PagedCollectionResponse<Movie>> GetFilteredMovie([FromQuery] FilterModel filter)
+        {
+            if(filter != null && filter.IncludeInactive == true)
+            {
+                // Only Admin users are allowed to perform this action
+                if (!IsUserAdminAutenticated())
+                {
+                    return Unauthorized(new { message = "Not allowed" });
+                }
+            }
+
+            // Filtering logic  
+            Func<FilterModel, IEnumerable<Movie>> filterData = (filterModel) =>
+            {
+                if(filterModel.Title != null && !string.IsNullOrEmpty(filterModel.Title))
+                {
+                    if (filterModel.IncludeInactive)
+                    {
+                        return _context.Movie.Where(m => m.Title.Contains(filterModel.Title, StringComparison.InvariantCultureIgnoreCase))
+                              .Skip((filterModel.Page - 1) * filter.Limit)
+                              .Take(filterModel.Limit);
+                    }
+                    else
+                    {
+                        return _context.Movie.Where(m => m.Title.Contains(filterModel.Title, StringComparison.InvariantCultureIgnoreCase) && m.IsAvailable == true)
+                              .Skip((filterModel.Page - 1) * filter.Limit)
+                              .Take(filterModel.Limit);
+                    }
+                  
+                }
+                else
+                {
+                    if (filterModel.IncludeInactive)
+                    {
+                        return _context.Movie.ToList()
+                              .Skip((filterModel.Page - 1) * filter.Limit)
+                              .Take(filterModel.Limit);
+                    }
+                    else
+                    {
+                        return _context.Movie.Where(m => m.IsAvailable == true)
+                              .Skip((filterModel.Page - 1) * filter.Limit)
+                              .Take(filterModel.Limit);
+                    }
+                }
+              
+            };
+
+            // Get the data for the current page  
+            var result = new PagedCollectionResponse<Movie>();
+            result.Items = filterData(filter);
+
+            // Get next page URL string  
+            FilterModel nextFilter = filter.Clone() as FilterModel;
+            nextFilter.Page += 1;
+            String nextUrl = filterData(nextFilter).Count() <= 0 ? null : this.Url.Action("GetFilteredMovie", null, nextFilter, Request.Scheme);
+
+            // Get previous page URL string  
+            FilterModel previousFilter = filter.Clone() as FilterModel;
+            previousFilter.Page -= 1;
+            String previousUrl = previousFilter.Page <= 0 ? null : this.Url.Action("GetFilteredMovie", null, previousFilter, Request.Scheme);
+
+            result.NextPage = !String.IsNullOrWhiteSpace(nextUrl) ? new Uri(nextUrl) : null;
+            result.PreviousPage = !String.IsNullOrWhiteSpace(previousUrl) ? new Uri(previousUrl) : null;
+
+            return  result;
         }
 
         /// <summary>
