@@ -143,7 +143,7 @@ namespace SevenDays.Api.Controllers
         /// Update complete movie
         /// </summary>
         /// <param name="id">Id Movie</param>
-        /// <param name="movie">DTO Movie</param>
+        /// <param name="movie">Movie object</param>
         /// <returns>No content</returns>
         // PUT: api/Movies/5
         [HttpPut("{id}")]
@@ -242,7 +242,7 @@ namespace SevenDays.Api.Controllers
         /// <summary>
         /// Create one movie
         /// </summary>
-        /// <param name="movie">DTO Movie</param>
+        /// <param name="movie">Movie object</param>
         /// <returns>New Movie details</returns>
         // POST: api/Movies
         [HttpPost]

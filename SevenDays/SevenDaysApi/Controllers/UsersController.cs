@@ -86,7 +86,7 @@ namespace SevenDays.Api.Controllers
         /// Update complete user
         /// </summary>
         /// <param name="id">Id User</param>
-        /// <param name="movie">DTO User</param>
+        /// <param name="movie">User object DTO</param>
         /// <returns>No content</returns>
         // PUT: api/Users/5
         [HttpPut("{id}")]
@@ -202,6 +202,10 @@ namespace SevenDays.Api.Controllers
                     IdMovie = movie.IdMovie
                 };
 
+                // Add one like to Likes counter in Movie Object
+                movie.LikesCounter++;
+
+                _context.Movie.Update(movie);
                 _context.Liked.Add(liked);
                 await _context.SaveChangesAsync();
             }
@@ -235,6 +239,10 @@ namespace SevenDays.Api.Controllers
             var liked = _context.Liked.Where(lk => lk.IdMovie == movie.IdMovie && lk.IdUser == user.IdUser).FirstOrDefault();
             if (liked != null)
             {
+                // Remove one like to Likes counter in Movie Object
+                movie.LikesCounter--;
+
+                _context.Movie.Update(movie);
                 _context.Liked.Remove(liked);
                 await _context.SaveChangesAsync();
             }

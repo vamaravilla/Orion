@@ -39,7 +39,7 @@ namespace SevenDays.Api
             services.AddDbContext<SevenDaysContext>(opt =>
                opt.UseSqlServer(connectionString));
             services.AddControllers()
-                   .AddNewtonsoftJson();
+                   .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
             // JWT configurations
