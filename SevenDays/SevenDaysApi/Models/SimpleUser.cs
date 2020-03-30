@@ -7,21 +7,13 @@ namespace SevenDays.Api.Models
     /// </summary>
     public class SimpleUser
     {
-        public SimpleUser(string email,int id)
-        {
-            Email = email;
-            IdUser = id;
-            Password = "";
-        }
+        // Profile types
+        public static string Admin = "1";
+        public static string Customer = "2";
+
         public SimpleUser()
         {
-            Email = null;
-            Password = null;
-        }
-        public SimpleUser(string email, string password)
-        {
-            Email = email;
-            Password = password;
+            Password = "";
         }
 
         [Required]
@@ -29,6 +21,7 @@ namespace SevenDays.Api.Models
         [Required]
         public string Password { get; set; }
         public int IdUser { get; set; }
+        public int? Profile { get; set; }
         public string Token { get; set; }
     }
 }

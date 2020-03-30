@@ -29,6 +29,12 @@ namespace SevenDays.Api.Services
             db = dbContext;
         }
 
+        /// <summary>
+        /// Check user and create token for JWT
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public SimpleUser Authenticate(string email, string password)
         {
             var user = db.User.SingleOrDefault(x => x.Email == email && x.Password == password);
@@ -38,7 +44,12 @@ namespace SevenDays.Api.Services
                 return null;
 
             // Creating simple user object to add Token  
-            SimpleUser simpleUser = new SimpleUser(user.Email, user.IdUser);
+            SimpleUser simpleUser = new SimpleUser()
+            {
+                IdUser = user.IdUser,
+                Email = user.Email,
+                Profile = user.Profile
+            };
   
 
             // Authentication successful so generate jwt token
@@ -48,7 +59,8 @@ namespace SevenDays.Api.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, simpleUser.IdUser.ToString())
+                    // Claim Id is composed by two values IdUser + Profile to be used after
+                    new Claim(ClaimTypes.Name, $"{simpleUser.IdUser}.{simpleUser.Profile}")
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -59,9 +71,14 @@ namespace SevenDays.Api.Services
             return simpleUser;
         }
 
+        /// <summary>
+        /// Get Database Context
+        /// </summary>
+        /// <returns></returns>
         public SevenDaysContext GetDBContext()
         {
             return db;
         }
+
     }
 }

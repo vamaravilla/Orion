@@ -38,10 +38,8 @@ namespace SevenDays.Api
             string connectionString = ConfigurationExtensions.GetConnectionString(this.Configuration,"SevenDaysConnectionString");
             services.AddDbContext<SevenDaysContext>(opt =>
                opt.UseSqlServer(connectionString));
-            services.AddControllers(options =>
-            {
-                options.InputFormatters.Insert(0, GetJsonPatchInputFormatter());
-            });
+            services.AddControllers()
+                   .AddNewtonsoftJson();
 
 
             // JWT configurations
@@ -96,20 +94,5 @@ namespace SevenDays.Api
             });
         }
 
-        private static NewtonsoftJsonPatchInputFormatter GetJsonPatchInputFormatter()
-        {
-            var builder = new ServiceCollection()
-                .AddLogging()
-                .AddMvc()
-                .AddNewtonsoftJson()
-                .Services.BuildServiceProvider();
-
-            return builder
-                .GetRequiredService<IOptions<MvcOptions>>()
-                .Value
-                .InputFormatters
-                .OfType<NewtonsoftJsonPatchInputFormatter>()
-                .First();
-        }
     }
 }

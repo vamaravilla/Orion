@@ -28,7 +28,7 @@ namespace SevenDays.Api.Models
         [Column(TypeName = "decimal(9, 3)")]
         public decimal? SalePrice { get; set; }
         public bool? IsAvailable { get; set; }
-
+        public int? LikesCounter { get; set; }
         [InverseProperty("IdMovieNavigation")]
         public virtual ICollection<Inventory> Inventory { get; set; }
         [InverseProperty("IdMovieNavigation")]

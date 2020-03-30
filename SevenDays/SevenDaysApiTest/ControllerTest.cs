@@ -9,19 +9,19 @@ namespace SevenDaysApiTest
 {
     public class Tests
     {
-        MoviesOldController movieController;
+        MoviesController movieController;
 
         [SetUp]
         public void Setup()
         {
-            movieController = new MoviesOldController(new SevenDaysContext());
+            movieController = new MoviesController(new SevenDaysContext());
         }
 
         [Test]
         public async void TestGetMovie()
         {
             //Arrange + Act
-            var response = await movieController.GetMovie();
+            var response = await movieController.GetMovie(true);
 
             //Assert
             Assert.IsNotNull(response);

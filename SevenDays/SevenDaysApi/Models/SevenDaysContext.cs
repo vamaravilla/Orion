@@ -22,8 +22,8 @@ namespace SevenDays.Api.Models
         public virtual DbSet<Rental> Rental { get; set; }
         public virtual DbSet<Sale> Sale { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<AuditMovieLog> AuditMovieLog { get; set; }
 
-        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Inventory>(entity =>
@@ -102,6 +102,13 @@ namespace SevenDays.Api.Models
                 entity.Property(e => e.Name).IsUnicode(false);
 
                 entity.Property(e => e.Password).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<AuditMovieLog>(entity =>
+            {
+                entity.Property(e => e.ActionDate).HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.Title).IsUnicode(false);
+                entity.Property(e => e.Action).IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
