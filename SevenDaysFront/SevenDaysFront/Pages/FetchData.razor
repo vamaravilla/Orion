@@ -1,0 +1,50 @@
+﻿@page "/movies"
+
+@using SevenDaysFront.Data
+@inject MovieService movieService
+
+<h1>Movies</h1>
+
+<p>List of movies avaibles.</p>
+
+@if (movies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Rental Price</th>
+                <th>Sale Price</th>
+                <th>Stock</th>
+                <th>Likes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in movies)
+            {
+            <tr>
+                <td>@movie.IdMovie</td>
+                <td>@movie.Title</td>
+                <td>$@movie.RentalPrice</td>
+                <td>$@movie.SalePrice</td>
+                <td>@movie.Stock</td>
+                <td>@movie.LikesCounter</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Movie[] movies;
+
+    protected override async Task OnInitializedAsync()
+    {
+        movies = await movieService.GetMovieAsync();
+    }
+}
