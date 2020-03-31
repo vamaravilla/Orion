@@ -26,7 +26,7 @@ namespace SevenDays.Api.Controllers
         }
 
         /// <summary>
-        /// Get All movies
+        /// Get All movies without paging
         /// </summary>
         /// <returns>List of movies</returns>
         // GET: api/Movies
@@ -168,7 +168,7 @@ namespace SevenDays.Api.Controllers
         // GET: api/Movies
         [AllowAnonymous]
         [HttpGet("search")]
-        public async Task<ActionResult<IEnumerable<Movie>>> SearchMovie([FromQuery]string? name)
+        public async Task<ActionResult<IEnumerable<Movie>>> SearchMovie([FromQuery]string name)
         {
 
             List<Movie> moviesListed;
@@ -438,6 +438,7 @@ namespace SevenDays.Api.Controllers
         {
             bool isAdmin = false;
             // Get logged user if exists
+            if (this.User == null || this.User.Identity == null) return false;
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
             var userCompositeId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
 
@@ -461,6 +462,7 @@ namespace SevenDays.Api.Controllers
         {
             int? idUser = null;
             // Get logged user if exists
+            if (this.User == null || this.User.Identity == null) return null;
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
             var userCompositeId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
             if (userCompositeId != null)
@@ -476,7 +478,7 @@ namespace SevenDays.Api.Controllers
         }
 
         /// <summary>
-        /// Addinf Audit Log for Movies
+        /// Adding Audit Log for Movies
         /// </summary>
         /// <param name="movieEdited">Movie edited</param>
         private void AddAuditMovieLog(Movie movieEdited)

@@ -19,6 +19,7 @@ using Microsoft.IdentityModel.Tokens;
 using SevenDays.Api.Services;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
 namespace SevenDays.Api
 {
@@ -67,6 +68,23 @@ namespace SevenDays.Api
                 };
             });
 
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Seven Days API",
+                    Description = "Best RESTful API to manage a small movie rental.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Victor Maravilla",
+                        Email = "vawonder@gmail.com",
+                        Url = new Uri("https://www.linkedin.com/in/vamaravilla/"),
+                    }
+                });
+            });
+
             // Configure DI for application services
             services.AddScoped<IUserService, UserService>();
         }
@@ -87,6 +105,17 @@ namespace SevenDays.Api
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui(HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SenvenDays API V1");
+                //c.RoutePrefix = string.Empty;
+            });
 
             app.UseEndpoints(endpoints =>
             {
