@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "e81282b9-83f1-45c8-a922-be58e5357ec2",
-		"name": "SevenDaysChallenge",
+		"_postman_id": "14afa7b0-7f83-4b1f-8ca1-c6ccc494eacf",
+		"name": "SevenDaysChallenge_Azure",
 		"description": "Author: Victor Maravilla",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,9 +18,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies"
@@ -48,9 +49,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies"
@@ -78,9 +80,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies?available=false",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies"
@@ -114,9 +117,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies?sort=popularity_desc&available=true",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies"
@@ -200,9 +204,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/1",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies",
@@ -231,9 +236,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/search?name=a",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies",
@@ -277,9 +283,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/1",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies",
@@ -306,7 +313,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"A\",\n    \"description\": \"A\",\n    \"image\": \"\",\n    \"stock\": 2,\n    \"rentalPrice\": 10.000,\n    \"salePrice\": 20.000,\n    \"isAvailable\": true\n}",
+							"raw": "{\n    \"title\": \"X\",\n    \"description\": \"X\",\n    \"image\": \"\",\n    \"stock\": 2,\n    \"rentalPrice\": 10.000,\n    \"salePrice\": 20.000,\n    \"isAvailable\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -317,9 +324,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies"
@@ -356,9 +364,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/1",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies",
@@ -396,9 +405,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/1/availability",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies",
@@ -437,9 +447,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/1/availability",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies",
@@ -478,9 +489,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/4",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"movies",
@@ -514,37 +526,7 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users/authenticate",
 							"protocol": "https",
 							"host": [
-								"localhost"
-							],
-							"port": "44362",
-							"path": [
-								"api",
-								"users",
-								"authenticate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "User_Authenticate_az",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"Email\": \"alex@gmail.com\",\n\t\"Password\": \"timeflies20.\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://sevendayschallenge.azurewebsites.net/api/users/authenticate",
-							"protocol": "https",
-							"host": [
-								"sevendayschallenge",
+								"sevendayschallengeapi",
 								"azurewebsites",
 								"net"
 							],
@@ -565,7 +547,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEiLCJuYmYiOjE1ODU0NTY3MzMsImV4cCI6MTU4NjA2MTUzMywiaWF0IjoxNTg1NDU2NzMzfQ.WoIFY66EWNbcn16tyyxJ5YRKspzhC0S04By9nqpkdOE",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjEuMSIsIm5iZiI6MTU4NTUxMDMyNywiZXhwIjoxNTg2MTE1MTI3LCJpYXQiOjE1ODU1MTAzMjd9.2TSrFHAAZT0BxhD6iVacH9AJ0pYLGZyV4L-tTgQFECI",
 									"type": "string"
 								}
 							]
@@ -576,9 +558,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"users"
@@ -606,9 +589,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users/1/like/movies/2",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"users",
@@ -640,9 +624,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users/1/like/movies/1",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"users",
@@ -680,9 +665,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/inventories/movies/1",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"inventories",
@@ -718,9 +704,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/sales",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"sales"
@@ -757,9 +744,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/sales",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"sales"
@@ -793,9 +781,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/rentals",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"rentals"
@@ -832,9 +821,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/rentals",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"rentals"
@@ -871,9 +861,10 @@
 							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/rentals/returnmovie",
 							"protocol": "https",
 							"host": [
-								"localhost"
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
 							],
-							"port": "44362",
 							"path": [
 								"api",
 								"rentals",
