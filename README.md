@@ -38,7 +38,7 @@ You can import the **Postman** collections included in the **Docs** folder and t
 * **SevenDaysChallenge.postman_collection_LOCAL.json**
 
 You can visualize all the API documentation in the follow URL:
-* [http://sevendayschallengeapi.azurewebsites.net/swagger/index.html](http://sevendayschallengeapi.azurewebsites.net/swagger/index.html)
+* [https://sevendayschallengeapi.azurewebsites.net/swagger/index.html](https://sevendayschallengeapi.azurewebsites.net/swagger/index.html)
 
 Also you can check a simple web app that consume the API to get the movies in the follow URL:
 * [https://sevendayschallengeweb.azurewebsites.net](https://sevendayschallengeweb.azurewebsites.net)
