@@ -2,6 +2,8 @@
 
 Best RESTful API to manage a small movie rental.
 
+![Diagram](/Docs/Diagram.PNG?raw=true "API Diagram")
+
 ## Prerequisites 🔧
 
 * .NET Core 3.1
