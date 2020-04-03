@@ -14,7 +14,7 @@ CREATE TABLE [Movie](
 	[IdMovie] int IDENTITY(1,1) NOT NULL,
 	[Title] varchar(100) NOT NULL,
 	[Description] varchar(500) NULL,
-	[Image] varchar(50) NULL,
+	[Image] varchar(100) NULL,
 	[Stock] int NULL,
 	[RentalPrice] decimal(9, 3) NULL,
 	[SalePrice] decimal(9, 3) NULL,

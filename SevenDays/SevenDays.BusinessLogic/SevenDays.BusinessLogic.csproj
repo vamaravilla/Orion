@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SevenDays.DataAccess\SevenDays.DataAccess.csproj" />
+    <ProjectReference Include="..\SevenDays.Entities\SevenDays.Entities.csproj" />
+    <ProjectReference Include="..\SevenDays.Util\SevenDays.Util.csproj" />
+  </ItemGroup>
+
+</Project>

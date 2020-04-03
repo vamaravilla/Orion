@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDaysApi", "SevenDaysApi\SevenDaysApi.csproj", "{45756BF7-5D17-4ADF-9C33-CFB3AA3372CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDays.Api", "SevenDays.Api\SevenDays.Api.csproj", "{45756BF7-5D17-4ADF-9C33-CFB3AA3372CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenDaysApiTest", "SevenDaysApiTest\SevenDaysApiTest.csproj", "{FC856A75-0F22-44E4-B683-221B06D7815F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDays.Test", "SevenDays.Test\SevenDays.Test.csproj", "{FC856A75-0F22-44E4-B683-221B06D7815F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDays.Entities", "SevenDays.Entities\SevenDays.Entities.csproj", "{5D1C859F-69AC-4E29-9DA4-69D856FA797A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDays.DataAccess", "SevenDays.DataAccess\SevenDays.DataAccess.csproj", "{3B3CB18C-5C0B-4505-81E0-3934C490C275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenDays.BusinessLogic", "SevenDays.BusinessLogic\SevenDays.BusinessLogic.csproj", "{66CA8839-B953-4503-8B7D-E149BA3ECA1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenDays.Util", "SevenDays.Util\SevenDays.Util.csproj", "{BBE58EED-0605-493D-B674-740512FB63B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,22 @@ Global
 		{FC856A75-0F22-44E4-B683-221B06D7815F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC856A75-0F22-44E4-B683-221B06D7815F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC856A75-0F22-44E4-B683-221B06D7815F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D1C859F-69AC-4E29-9DA4-69D856FA797A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D1C859F-69AC-4E29-9DA4-69D856FA797A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D1C859F-69AC-4E29-9DA4-69D856FA797A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D1C859F-69AC-4E29-9DA4-69D856FA797A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B3CB18C-5C0B-4505-81E0-3934C490C275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3CB18C-5C0B-4505-81E0-3934C490C275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B3CB18C-5C0B-4505-81E0-3934C490C275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B3CB18C-5C0B-4505-81E0-3934C490C275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66CA8839-B953-4503-8B7D-E149BA3ECA1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CA8839-B953-4503-8B7D-E149BA3ECA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CA8839-B953-4503-8B7D-E149BA3ECA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CA8839-B953-4503-8B7D-E149BA3ECA1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE58EED-0605-493D-B674-740512FB63B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE58EED-0605-493D-B674-740512FB63B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE58EED-0605-493D-B674-740512FB63B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE58EED-0605-493D-B674-740512FB63B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
