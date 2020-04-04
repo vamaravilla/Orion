@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SevenDays.Api\SevenDays.Api.csproj" />
+    <ProjectReference Include="..\SevenDays.Util\SevenDays.Util.csproj" />
   </ItemGroup>
 
 </Project>

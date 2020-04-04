@@ -1,0 +1,719 @@
+{
+	"info": {
+		"_postman_id": "78173161-aa00-4c57-a0c4-bd569a17840d",
+		"name": "7DaysCorona_azure",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Operations",
+			"item": [
+				{
+					"name": "User_authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Email\": \"victor@gmail.com\",\n\t\"Password\": \"timeflies20.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users/authenticate",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_adduser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Name\": \"Victor\",\n\t\"Email\": \"victor@gmail.com\",\n\t\"Password\": \"timeflies20.\",\n\t\"Profile\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_patchuser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjUuMSIsIm5iZiI6MTU4NTk5NjMwMCwiZXhwIjoxNTg2NjAxMTAwLCJpYXQiOjE1ODU5OTYzMDB9.z8yvLYcwdxrlSJKw_R_kizKgbI_4XSuYog1RsBmSj-4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/Profile\",\n        \"value\": 1\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users/5",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_getcurrentuser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_givealike_movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjMuMiIsIm5iZiI6MTU4NTk2NDI5MiwiZXhwIjoxNTg2NTY5MDkxLCJpYXQiOjE1ODU5NjQyOTJ9.-sdOKAj0yr6udTPmRqWnoR3f1drgdehhkZva-78pSuc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users/3/like/movies/18",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"3",
+								"like",
+								"movies",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_removealike_movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjMuMiIsIm5iZiI6MTU4NTk2NDI5MiwiZXhwIjoxNTg2NTY5MDkxLCJpYXQiOjE1ODU5NjQyOTJ9.-sdOKAj0yr6udTPmRqWnoR3f1drgdehhkZva-78pSuc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/users/3/like/movies/18",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"users",
+								"3",
+								"like",
+								"movies",
+								"18"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Movie Operations",
+			"item": [
+				{
+					"name": "Movie_addmovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTg5OTMxNywiZXhwIjoxNTg2NTA0MTE3LCJpYXQiOjE1ODU4OTkzMTd9.1YjLrR6px2XaBQsrYt0aURITJC2791Zaqv0xqJ9kdjI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Title",
+									"value": "Harry Potter",
+									"type": "text"
+								},
+								{
+									"key": "Image",
+									"type": "file",
+									"src": "/C:/Users/vmaravilla/Desktop/Challenge/Images/300.jpg"
+								},
+								{
+									"key": "Description",
+									"value": "Harry Potter",
+									"type": "text"
+								},
+								{
+									"key": "SalePrice",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "RentalPrice",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "Stock",
+									"value": "0",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "CounterLikes",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie_getonemovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTg5OTMxNywiZXhwIjoxNTg2NTA0MTE3LCJpYXQiOjE1ODU4OTkzMTd9.1YjLrR6px2XaBQsrYt0aURITJC2791Zaqv0xqJ9kdjI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/17",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"movies",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie_getmovies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTg5OTMxNywiZXhwIjoxNTg2NTA0MTE3LCJpYXQiOjE1ODU4OTkzMTd9.1YjLrR6px2XaBQsrYt0aURITJC2791Zaqv0xqJ9kdjI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie_getmovies_filtered",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTg5OTMxNywiZXhwIjoxNTg2NTA0MTE3LCJpYXQiOjE1ODU4OTkzMTd9.1YjLrR6px2XaBQsrYt0aURITJC2791Zaqv0xqJ9kdjI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/filter?sort=title_desc",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"movies",
+								"filter"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "title_desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie_patchmovie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\n\t\t\"op\": \"replace\",\n\t\t\"path\": \"/RentalPrice\",\n\t\t\"value\": 7.0\n\t},\n\t{\n\t\t\"op\": \"replace\",\n\t\t\"path\": \"/SalePrice\",\n\t\t\"value\": 32.0\n\t},\n\t{\n\t\t\"op\": \"replace\",\n\t\t\"path\": \"/IsAvailable\",\n\t\t\"value\": true\n\t}\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/movies/17",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"movies",
+								"17"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Inventory Operations",
+			"item": [
+				{
+					"name": "Inventory_addinventory",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"IdMovie\": 18,\n\t\"IsNew\": true,\n\t\"IsAvailable\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/inventories",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"inventories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory_getinventory_movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/inventories/movies/17",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"inventories",
+								"movies",
+								"17"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Sale Operations",
+			"item": [
+				{
+					"name": "Sale_getsales_currentuser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/sales",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sale_addsale_user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"IdInventory\": 9\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/sales",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"sales"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Rental Operations",
+			"item": [
+				{
+					"name": "Rental_getrentals_currentuser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/rentals",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"rentals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rental_addrental_user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"IdInventory\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/rentals",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"rentals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rental_return_movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjQuMSIsIm5iZiI6MTU4NTk3MTE1NSwiZXhwIjoxNTg2NTc1OTU1LCJpYXQiOjE1ODU5NzExNTV9.mBHOvAMmYvbXN63YqMHckl0A9IrYTnO1GgQ4Xm20-Y4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"IdRental\": 2,\n\t\"IdInventory\": 8\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sevendayschallengeapi.azurewebsites.net/api/rentals/returnmovie",
+							"protocol": "https",
+							"host": [
+								"sevendayschallengeapi",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"rentals",
+								"returnmovie"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -10,6 +10,7 @@ namespace SevenDays.Api.Helpers
     public class FilterModel: FilterModelBase
     {
         public string Title { get; set; }
+        public string Sort { get; set; }
         public bool IncludeInactive { get; set; }
 
         public FilterModel(): base()

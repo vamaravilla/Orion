@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using SevenDays.Api.Helpers;
 using SevenDays.DataAccess;
 using SevenDays.Entities;
 using SevenDays.Util;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SevenDays.BusinessLogic
 {
@@ -99,6 +102,77 @@ namespace SevenDays.BusinessLogic
 
             // Adding user
             dbResult = userDataAccess.CreateUser(user);
+            if (dbResult.Success)
+            {
+                // We should not return the password
+                result.Success = true;
+                result.Item = dbResult.Item;
+                result.Item.Password = String.Empty;
+            }
+            else
+            {
+                result.Message = dbResult.Message;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Get specifict user by id
+        /// </summary>
+        /// <param name="idUser">Id User</param>
+        /// <returns>Result object</returns>
+        public BLResult<User> GetUserById(int idUser)
+        {
+            DBResult<User> dbResult;
+            BLResult<User> result = new BLResult<User>();
+
+            // Search user
+            dbResult = userDataAccess.GetUserById(idUser);
+            if (dbResult.Success)
+            {
+                // We should not return the password
+                result.Success = true;
+                result.Item = dbResult.Item;
+                result.Item.Password = String.Empty;
+            }
+            else
+            {
+                result.Message = dbResult.Message;
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Update an User with Patch Document
+        /// </summary>
+        /// <param name="patchUser">Patch document</param>
+        /// <param name="idUser">id User</param>
+        /// <returns>Result</returns>
+        public async Task<BLResult<User>> PatchUser(JsonPatchDocument<User> patchUser, int idUser)
+        {
+            DBResult<User> dbResult;
+            BLResult<User> result = new BLResult<User>();
+
+            // Validating input data
+            if (patchUser == null)
+            {
+                result.Message = "Invalid data";
+                return result;
+            }
+
+            // Validating allowed operations
+            var op = patchUser.Operations.Where(o => o.path.Equals("/Password") || o.path.Equals("/Email")).Count();
+            if(op > 0)
+            {
+                result.Message = "Patch operation not allowed";
+                return result;
+            }
+
+            // Patchin user
+            dbResult = await userDataAccess.PatchUser(patchUser, idUser);
             if (dbResult.Success)
             {
                 // We should not return the password

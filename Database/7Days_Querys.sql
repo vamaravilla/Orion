@@ -1,20 +1,39 @@
 USE SevenDays;
 
+/************************
+         MOVIES
+*************************/
 SELECT * FROM [Movie];
+
+--DELETE [Movie]
+
 
 SELECT * FROM [Inventory]
 
-SELECT * FROM [User];
-
-SELECT * FROM [Sale];
+--DELETE [Inventory] -- CLEAN TABLE
 
 SELECT * FROM [AuditMovieLog] order by IdAuditMovieLog asc;
 
-UPDATE [Movie] SET LikesCounter = 20 WHERE IdMovie = 2
-UPDATE [Movie] SET LikesCounter = 16 WHERE IdMovie = 3
-UPDATE [Movie] SET LikesCounter = 11 WHERE IdMovie = 1
-
-UPDATE [Inventory] SET IsAvailable = 1 WHERE IdInventory = 1;
+--DELETE [AuditMovieLog] -- CLEAN TABLE
 
 
-DELETE [Sale] WHERE IdInventory = 1;
+/************************
+           USER
+*************************/
+
+SELECT * FROM [User];
+
+--DELETE [User] WHERE IdUser IN (1,2);
+
+SELECT * FROM [Sale];
+
+-- DELETE [Sale]; -- CLEAN TABLE
+
+SELECT * FROM [Rental];
+
+-- DELETE [Rental] -- CLEAN TABLE
+
+SELECT * FROM [Liked];
+
+-- DELETE [Liked] -- CLEAN TABLE
+

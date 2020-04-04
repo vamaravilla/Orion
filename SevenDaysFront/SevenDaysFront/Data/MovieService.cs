@@ -4,23 +4,22 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net.Http.Formatting;
+using System.Configuration;
 
 namespace SevenDaysFront.Data
 {
     public class MovieService
     {
-        // Temporary solution
-        private const string URL = "https://sevendayschallengeapi.azurewebsites.net/api/movies";
-        private string urlParameters = "?sort=popularity_desc";
 
-        public Task<Movie[]> GetMovieAsync()
+        public Task<Movie[]> GetMovieAsync(string basUrl)
         {
+            
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(URL);
+            client.BaseAddress = new Uri($"{basUrl}/api/movies");
             Movie[] listMovies = null;
 
             // List data response.
-            HttpResponseMessage response =  client.GetAsync(urlParameters).Result;  // Blocking call!
+            HttpResponseMessage response =  client.GetAsync(string.Empty).Result;  // Blocking call!
             if (response.IsSuccessStatusCode)
             {
                 // Parse the response body.

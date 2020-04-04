@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SevenDays.Api.Helpers;
 using SevenDays.DataAccess;
 using SevenDays.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xunit;
 
 namespace SevenDays.Test
 {
-    class UserTest
+    public class UserTest
     {
         public UserTest()
         {
@@ -15,7 +17,7 @@ namespace SevenDays.Test
             LoadTestData();
         }
 
-       
+
         /// Loading data for testing
         /// </summary>
         private void LoadTestData()

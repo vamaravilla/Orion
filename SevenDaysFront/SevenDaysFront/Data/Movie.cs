@@ -6,6 +6,8 @@ namespace SevenDaysFront.Data
     {
         public int IdMovie { get; set; }
         public string Title { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
         public decimal? RentalPrice { get; set; }
         public decimal? SalePrice { get; set; }
         public int? LikesCounter { get; set; }

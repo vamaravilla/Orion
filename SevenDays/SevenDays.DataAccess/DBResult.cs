@@ -28,4 +28,18 @@ namespace SevenDays.DataAccess
         public string Message { set; get; }
         public IEnumerable<T> Items { get; set; }
     }
+
+    public class DBFResults<T> where T : class
+    {
+        public DBFResults()
+        {
+            Success = false; // Failure is assumed
+            Message = string.Empty;
+        }
+        public bool Success { set; get; }
+        public string Message { set; get; }
+        public IEnumerable<T> Items { get; set; }
+        public int CountNextFilter { get; set; }
+    }
+
 }

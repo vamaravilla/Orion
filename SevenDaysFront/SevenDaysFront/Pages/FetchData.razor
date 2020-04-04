@@ -1,6 +1,8 @@
-﻿@page "/movies"
+﻿@page "/"
 
 @using SevenDaysFront.Data
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 @inject MovieService movieService
 
 <h1>Movies</h1>
@@ -16,8 +18,8 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Title</th>
+                <th>Image</th>
+                <th>Description</th>
                 <th>Rental Price</th>
                 <th>Sale Price</th>
                 <th>Stock</th>
@@ -27,14 +29,15 @@ else
         <tbody>
             @foreach (var movie in movies)
             {
-            <tr>
-                <td>@movie.IdMovie</td>
-                <td>@movie.Title</td>
-                <td>$@movie.RentalPrice</td>
-                <td>$@movie.SalePrice</td>
-                <td>@movie.Stock</td>
-                <td>@movie.LikesCounter</td>
-            </tr>
+                <tr>
+                    <td><image src="@movie.Image" /></td>
+                    <td><h2>@movie.Title</h2> <div>@movie.Description</div></td>
+
+                    <td>$@movie.RentalPrice</td>
+                    <td>$@movie.SalePrice</td>
+                    <td>@movie.Stock</td>
+                    <td>@movie.LikesCounter</td>
+                </tr>
             }
         </tbody>
     </table>
@@ -45,6 +48,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        movies = await movieService.GetMovieAsync();
+        var urlBase = @Configuration.GetSection("ApiUrl").Value;
+
+        movies = await movieService.GetMovieAsync(urlBase);
     }
 }

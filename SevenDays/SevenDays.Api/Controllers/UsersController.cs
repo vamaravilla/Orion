@@ -9,6 +9,7 @@ using System.Security.Claims;
 using SevenDays.BusinessLogic;
 using SevenDays.Entities;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace SevenDays.Api.Controllers
 {
@@ -19,10 +20,12 @@ namespace SevenDays.Api.Controllers
     {
 
         UserTransactionScript userTransactionScript;
+        LikedTransactionScript likedTransactionScript;
 
         public UsersController(IConfiguration configuration)
         {
             userTransactionScript = new UserTransactionScript(configuration);
+            likedTransactionScript = new LikedTransactionScript(configuration);
         }
 
         /// <summary>
@@ -43,7 +46,30 @@ namespace SevenDays.Api.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get user from token
+        /// </summary>
+        /// <param name="id">Id Movie</param>
+        /// <returns>User</returns>
+        // GET: api/Users/logged
+        [HttpGet]
+        public ActionResult<Movie> GetUser()
+        {
+            int idUser = GetCurrentUser();
+            if(idUser == -1)
+            {
+                return NotFound(new { message = "Invalid JWT" });
+            }
 
+            BLResult<User> result = userTransactionScript.GetUserById(idUser);
+
+            if (!result.Success)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            return Ok(result.Item);
+        }
 
 
         /// <summary>
@@ -66,6 +92,33 @@ namespace SevenDays.Api.Controllers
         }
 
 
+        /// <summary>
+        /// Partial update of one user
+        /// </summary>
+        /// <param name="id">Id User</param>
+        /// <param name="patchUser">Patch operations</param>
+        /// <returns>Result</returns>
+        // PATCH: api/Users/5
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchUser(int id, [FromBody]JsonPatchDocument<User> patchUser)
+        {
+            // Only Admin users are allowed to perform this action
+            if (!IsUserAdminAutenticated())
+            {
+                return Unauthorized(new { message = "Not allowed" });
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return new BadRequestObjectResult(ModelState);
+            }
+
+            BLResult<User> result = await userTransactionScript.PatchUser(patchUser,id);
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
 
         /// <summary>
         /// Give a like
@@ -73,9 +126,8 @@ namespace SevenDays.Api.Controllers
         /// <param name="idUser">Id User</param>
         /// <param name="idMovie">Id Movie</param>
         /// <returns>Result</returns>
-        /*
         [HttpPut("{idUser}/like/movies/{idMovie}")]
-        public async Task<ActionResult<User>> PutLike(int idUser, int IdMovie)
+        public ActionResult<User> PutLike(int idUser, int idMovie)
         {
             // Only the user is allowed to perform this action
             if (!IsAuthenticatedUser(idUser))
@@ -83,44 +135,30 @@ namespace SevenDays.Api.Controllers
                 return Unauthorized(new { message = "Not allowed" });
             }
 
-            var user = await _context.User.FindAsync(idUser);
-            var movie = await _context.Movie.FindAsync(IdMovie);
-            if (movie == null || user == null)
+            Liked liked = new Liked()
             {
-                return NotFound();
+                IdMovie = idMovie,
+                IdUser = idUser
+            };
+
+            BLResult<Liked> blResult = likedTransactionScript.PutLike(liked);
+            if (!blResult.Success)
+            {
+                return StatusCode(500, blResult);
             }
 
-            // Check that it has not been liked before
-            var liked = _context.Liked.Where(lk => lk.IdMovie == movie.IdMovie && lk.IdUser == user.IdUser).FirstOrDefault();
-            if(liked == null)
-            {
-                // Give a like
-                liked = new Liked()
-                {
-                    IdUser = user.IdUser,
-                    IdMovie = movie.IdMovie
-                };
-
-                // Add one like to Likes counter in Movie Object
-                movie.LikesCounter++;
-
-                _context.Movie.Update(movie);
-                _context.Liked.Add(liked);
-                await _context.SaveChangesAsync();
-            }
-
-            return Ok(new { message = $"User: {user.IdUser} LIKED the Movie: {movie.IdMovie}" });
+            return Ok(new { message = $"User: {liked.IdUser} LIKED the Movie: {liked.IdMovie}" });
         }
 
+        
         /// <summary>
         /// Remove a like
         /// </summary>
         /// <param name="idUser">Id User</param>
         /// <param name="idMovie">Id Movie</param>
         /// <returns>Result</returns>
-        
         [HttpDelete("{idUser}/like/movies/{idMovie}")]
-        public async Task<ActionResult<User>> DeleteLike(int idUser, int IdMovie)
+        public ActionResult<User> DeleteLike(int idUser, int idMovie)
         {
             // Only the user is allowed to perform this action
             if (!IsAuthenticatedUser(idUser))
@@ -128,26 +166,19 @@ namespace SevenDays.Api.Controllers
                 return Unauthorized(new { message = "Not allowed" });
             }
 
-            var user = await _context.User.FindAsync(idUser);
-            var movie = await _context.Movie.FindAsync(IdMovie);
-            if (movie == null || user == null)
+            Liked liked = new Liked()
             {
-                return NotFound();
+                IdMovie = idMovie,
+                IdUser = idUser
+            };
+
+            BLResult<Liked> blResult = likedTransactionScript.RemoveLike(liked);
+            if (!blResult.Success)
+            {
+                return StatusCode(500, blResult);
             }
 
-            // Check that it has not been liked before
-            var liked = _context.Liked.Where(lk => lk.IdMovie == movie.IdMovie && lk.IdUser == user.IdUser).FirstOrDefault();
-            if (liked != null)
-            {
-                // Remove one like to Likes counter in Movie Object
-                movie.LikesCounter--;
-
-                _context.Movie.Update(movie);
-                _context.Liked.Remove(liked);
-                await _context.SaveChangesAsync();
-            }
-
-            return Ok(new { message = $"User: {user.IdUser} removed the LIKE to the Movie: {movie.IdMovie}" });
+            return Ok(new { message = $"User: {liked.IdUser} removed the LIKE to the Movie: {liked.IdMovie}" });
         }
         
 
@@ -173,6 +204,7 @@ namespace SevenDays.Api.Controllers
             }
             return isAdmin;
         }
+       
 
         /// <summary>
         /// Validate if user is the same
@@ -197,6 +229,28 @@ namespace SevenDays.Api.Controllers
             }
             return isUserAuthenticated;
         }
-        */
+
+        /// <summary>
+        /// Get Id current user
+        /// </summary>
+        /// <returns>Id User/returns>
+        private int GetCurrentUser()
+        {
+            int idUser = -1;
+            // Get logged user if exists
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userCompositeId = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value;
+
+            if (userCompositeId != null)
+            {
+                var splitUserId = userCompositeId.Split('.');
+                // Validating if user is the same
+                if (splitUserId != null && splitUserId.Length == 2)
+                {
+                    idUser = int.Parse(splitUserId[0]);
+                }
+            }
+            return idUser;
+        }
     }
 }

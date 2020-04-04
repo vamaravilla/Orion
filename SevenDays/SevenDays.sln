@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDays.Entities", "Seven
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDays.DataAccess", "SevenDays.DataAccess\SevenDays.DataAccess.csproj", "{3B3CB18C-5C0B-4505-81E0-3934C490C275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenDays.BusinessLogic", "SevenDays.BusinessLogic\SevenDays.BusinessLogic.csproj", "{66CA8839-B953-4503-8B7D-E149BA3ECA1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDays.BusinessLogic", "SevenDays.BusinessLogic\SevenDays.BusinessLogic.csproj", "{66CA8839-B953-4503-8B7D-E149BA3ECA1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SevenDays.Util", "SevenDays.Util\SevenDays.Util.csproj", "{BBE58EED-0605-493D-B674-740512FB63B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SevenDays.Util", "SevenDays.Util\SevenDays.Util.csproj", "{BBE58EED-0605-493D-B674-740512FB63B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

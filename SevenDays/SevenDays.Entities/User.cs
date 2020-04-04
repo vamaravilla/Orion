@@ -13,7 +13,6 @@ namespace SevenDays.Entities
             Rental = new HashSet<Rental>();
             Sale = new HashSet<Sale>();
         }
-
         [Key]
         public int IdUser { get; set; }
         [Required]

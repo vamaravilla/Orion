@@ -34,8 +34,8 @@ If you decide to use another database, don't forget to change the connection str
 ## Usage ⚙️
 
 You can import the **Postman** collections included in the **Docs** folder and test all the operations availables. There are two files to test local api or my api exposed in Azure.
-* **SevenDaysChallenge.postman_collection_AZUREAPP.json**
-* **SevenDaysChallenge.postman_collection_LOCAL.json**
+* **7DaysCorona_azure.postman_collection.json**
+* **7DaysCorona_localhost.postman_collection.json**
 
 You can visualize all the API documentation in the follow URL:
 * [https://sevendayschallengeapi.azurewebsites.net/swagger/index.html](https://sevendayschallengeapi.azurewebsites.net/swagger/index.html)
@@ -49,6 +49,7 @@ Also you can check a simple web app that consume the API to get the movies in th
 * [Azure SQL Database](https://azure.microsoft.com/es-es/services/sql-database/) - Cloud storage
 * [Swagger UI](https://swagger.io/tools/swagger-ui/) - Used to the visual documentation
 * [Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) - Used to create a very simple web UI
+* [Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/) - Used to storage images
 
 ## Author ✒️
 
