@@ -30,13 +30,6 @@ namespace SevenDaysFront
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<MovieService>();
-            services.AddSingleton(async p =>
-            {
-                var httpClient = p.GetRequiredService<HttpClient>();
-                return await httpClient.GetJsonAsync<Settings>("settings.json")
-                    .ConfigureAwait(false);
-            });
-
  
         }
 

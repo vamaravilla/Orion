@@ -30,7 +30,7 @@ else
             @foreach (var movie in movies)
             {
                 <tr>
-                    <td><image src="@movie.Image" /></td>
+                    <td><img src="@movie.Image" asp-append-version="true"/></td>
                     <td><h2>@movie.Title</h2> <div>@movie.Description</div></td>
 
                     <td>$@movie.RentalPrice</td>
